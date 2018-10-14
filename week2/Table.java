@@ -26,6 +26,10 @@ public class Table {
                 System.out.println("Press enter to continue...");
             }
 
+            if(counterSteps == steps){
+                System.out.printf("x = %.4f\ty = %.4f%n", to, f(to));
+            }
+
         }
     }
 
@@ -35,10 +39,6 @@ public class Table {
         for(i = counterSteps; i < counterSteps + STEPS_AT_ONCE && i < steps; i++){
             System.out.printf("x = %.4f\ty = %.4f%n", from, f(from));
             from += stepSize;
-        }
-
-        if(i == steps){
-            System.out.printf("x = %.4f\ty = %.4f%n", to, f(to));
         }
 
         return i;
