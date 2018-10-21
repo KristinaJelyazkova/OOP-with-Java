@@ -64,14 +64,18 @@ public class SortUtils {
         return result;
     }
 
-    /*public static int[] mergeSort(int[] a){
+    public static int[] mergeSort(int[] a){
+        if(a.length == 0){
+            int result[] = new int[0];
+            return result;
+        }
         if(a.length == 1){
             int result[] = new int[1];
             result[0] = a[0];
             return result;
         }
 
-        int middle = a.length / 2 + 1;
+        int middle = a.length / 2;
 
         int firstHalf[] = mergeSort(Arrays.copyOfRange(a, 0, middle));
         int secondHalf[] = mergeSort(Arrays.copyOfRange(a, middle, a.length));
@@ -79,5 +83,23 @@ public class SortUtils {
         int result[] = merge(firstHalf, secondHalf);
 
         return result;
-    }*/
+    }
+
+    public static int[] mergeSort2(int[] a, int from, int to){
+        if(from == to){
+            return new int[0];
+        }
+        if(Math.abs(to - from) <= 1){
+            return new int[]{a[from]};
+        }
+
+        int middle = (to - from) / 2;
+
+        int firstHalf[] = mergeSort2(a, from, from + middle);
+        int secondHalf[] = mergeSort2(a, from + middle, to);
+
+        int result[] = merge(firstHalf, secondHalf);
+
+        return result;
+    }
 }

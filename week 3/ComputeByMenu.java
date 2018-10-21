@@ -38,7 +38,7 @@ public class ComputeByMenu {
                 break;
             case 5:
                 System.out.println("Exiting the program...");
-                break;
+                System.exit(0);
             default:
                 System.out.println("Wrong usage! Please enter a number between 1 and 5!");
         }
