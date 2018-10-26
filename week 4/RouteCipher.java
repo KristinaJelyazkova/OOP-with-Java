@@ -104,38 +104,30 @@ public class RouteCipher {
         }
     }
 
+
+
     private int readTopRight(char[][] matrix, int currentTopLeft, int currentHeight,
                              int currentWidth, int currentIndex, char[] cipherText) {
+        int last = (currentWidth == 1 || currentHeight == 1) ? currentTopLeft : (currentTopLeft + 1);
+        boolean hasColumnPart = (currentHeight > 1),
+                hasRowPart = (currentWidth > 1);
 
-        for(int i = currentTopLeft + currentHeight - 1; i > currentTopLeft; i--){
+        for(int i = currentTopLeft + currentHeight - 1; i >= last && hasColumnPart; i--){
             if(status == Status.ENCRYPTING) {
-                cipherText[currentIndex] = matrix[i][currentTopLeft + currentWidth - 1];
+                cipherText[currentIndex++] = matrix[i][currentTopLeft + currentWidth - 1];
             }
             else{
-                matrix[i][currentTopLeft + currentWidth - 1] = cipherText[currentIndex];
+                matrix[i][currentTopLeft + currentWidth - 1] = cipherText[currentIndex++];
             }
-            currentIndex++;
         }
 
-        for(int j = currentTopLeft + currentWidth - 1; j > currentTopLeft; j--){
+        for(int j = currentTopLeft + currentWidth - 1; j >= last && hasRowPart; j--){
             if(status == Status.ENCRYPTING) {
-                cipherText[currentIndex] = matrix[currentTopLeft][j];
+                cipherText[currentIndex++] = matrix[currentTopLeft][j];
             }
             else{
-                 matrix[currentTopLeft][j] = cipherText[currentIndex];
+                 matrix[currentTopLeft][j] = cipherText[currentIndex++];
             }
-            currentIndex++;
-        }
-
-        // if the height is 1 then we have to read the last element
-        if(currentHeight == 1){
-            if(status == Status.ENCRYPTING) {
-                cipherText[currentIndex] = matrix[currentTopLeft][currentTopLeft + currentWidth - 1];
-            }
-            else{
-                matrix[currentTopLeft][currentTopLeft + currentWidth - 1] = cipherText[currentIndex];
-            }
-            currentIndex++;
         }
 
         return currentIndex;
@@ -143,36 +135,29 @@ public class RouteCipher {
 
     private int readBottomLeft(char[][] matrix, int currentTopLeft, int currentHeight,
                                int currentWidth, int currentIndex, char[] cipherText) {
+        int lastRow = (currentWidth == 1) ? (currentTopLeft + currentHeight - 1)
+                : (currentTopLeft + currentHeight - 2);
+        int lastColumn = (currentHeight == 1) ? (currentTopLeft + currentWidth - 1)
+                : (currentTopLeft + currentWidth - 2);
+        boolean hasColumnPart = currentHeight > 1,
+                hasRowPart = currentWidth > 1;
 
-        for(int i = currentTopLeft; i < currentTopLeft + currentHeight - 1; i++){
+        for(int i = currentTopLeft; i <= lastRow && hasColumnPart; i++){
             if(status == Status.ENCRYPTING) {
-                cipherText[currentIndex] = matrix[i][currentTopLeft];
+                cipherText[currentIndex++] = matrix[i][currentTopLeft];
             }
             else{
-                matrix[i][currentTopLeft] = cipherText[currentIndex];
+                matrix[i][currentTopLeft] = cipherText[currentIndex++];
             }
-            currentIndex++;
         }
 
-        for(int j = currentTopLeft; j < currentTopLeft + currentWidth - 1; j++){
+        for(int j = currentTopLeft; j <= lastColumn && hasRowPart; j++){
             if(status == Status.ENCRYPTING) {
-                cipherText[currentIndex] = matrix[currentTopLeft + currentHeight - 1][j];
+                cipherText[currentIndex++] = matrix[currentTopLeft + currentHeight - 1][j];
             }
             else{
-                matrix[currentTopLeft + currentHeight - 1][j] = cipherText[currentIndex];
+                matrix[currentTopLeft + currentHeight - 1][j] = cipherText[currentIndex++];
             }
-            currentIndex++;
-        }
-
-        // if the width is 1 then we have to read the last element
-        if(currentWidth == 1){
-            if(status == Status.ENCRYPTING) {
-                cipherText[currentIndex] = matrix[currentTopLeft + currentHeight - 1][currentTopLeft];
-            }
-            else{
-                matrix[currentTopLeft + currentHeight - 1][currentTopLeft] = cipherText[currentIndex];
-            }
-            currentIndex++;
         }
 
         return currentIndex;
