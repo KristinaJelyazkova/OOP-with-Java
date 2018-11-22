@@ -8,6 +8,6 @@ public class AlarmClockTest{
                 System.out.println("Number of rings left: " + alarmClock.getNrings());
             }
         });
-        alarmClock.start();
+        alarmClock.start(2);
     }
 }

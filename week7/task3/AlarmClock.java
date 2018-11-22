@@ -24,11 +24,17 @@ public class AlarmClock {
         }
     }
 
-    public void start(){
+    public void start(int time){ // time is in seconds
         while(nrings >= 0){
             AlarmEvent e = new AlarmEvent(nrings);
             onAlarm(e);
             nrings--;
+
+            long beginTime = System.currentTimeMillis();
+            long currentTime = beginTime;
+            while(currentTime - beginTime < time * 1000){
+                currentTime = System.currentTimeMillis();
+            }
         }
     }
 }
