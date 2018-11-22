@@ -10,8 +10,8 @@ public class AlarmClock {
         this.nrings = nrings;
     }
 
-    public AlarmClock(int nrings) {
-        this.nrings = nrings;
+    public AlarmClock() {
+        nrings = 10;
     }
 
     public void addAlarmListener(AlarmListener a){
