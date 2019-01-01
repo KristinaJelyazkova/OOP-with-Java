@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="315.0" prefWidth="733.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="accounts.FXMLAccountController">
+   <padding>
+      <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
+   </padding>
+   <children>
+      <GridPane hgap="8.0" prefHeight="315.0" prefWidth="733.0" vgap="8.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="298.0" minWidth="10.0" prefWidth="298.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.0" minWidth="10.0" prefWidth="145.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="290.0" minWidth="10.0" prefWidth="290.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="195.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="319.0" minHeight="10.0" prefHeight="244.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="btnCreateSavingAccount" mnemonicParsing="false" onAction="#btnCreateSavingAccountClicked" prefHeight="25.0" prefWidth="191.0" text="Create Saving Account" GridPane.valignment="BOTTOM" />
+            <Button fx:id="btnCreateCreditAccount" mnemonicParsing="false" onAction="#btnCreateCreditAccountClicked" prefHeight="27.0" prefWidth="191.0" text="Create Credit Account" GridPane.columnIndex="2" GridPane.valignment="BOTTOM" />
+            <TextArea fx:id="txaSavingAccounts" prefHeight="204.0" prefWidth="287.0" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets bottom="20.0" />
+               </GridPane.margin>
+            </TextArea>
+            <TextArea fx:id="txaCreditAccount" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets bottom="20.0" />
+               </GridPane.margin>
+            </TextArea>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Label fx:id="lblRate" text="Rate" />
+                  <TextField fx:id="txtRate" text="0.20" />
+                  <Button fx:id="btnChangeRate" mnemonicParsing="false" onAction="#btnChangeRateClicked" text="Change Rate" />
+                  <Button fx:id="btnShowAccounts" mnemonicParsing="false" onAction="#btnShowAccountsClicked" text="Show Accounts" />
+                  <Label fx:id="lblBalance" prefHeight="16.0" prefWidth="41.0" text="Balance" />
+                  <TextField fx:id="txtBalance" text="1122.15" />
+               </children>
+               <padding>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </padding>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </padding>
+      </GridPane>
+   </children>
+</AnchorPane>
