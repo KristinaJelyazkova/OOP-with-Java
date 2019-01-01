@@ -1,58 +1,43 @@
+package product;
+
 public class Product {
-    enum Category{
-        A, B, C, D;
-    }
-
-    private static int numberOfProducts = 0;
-
-    private final int INV_NUMBER;
-    private String invDescription;
-    private Category category;
+    private String description;
+    private String category;
     private double price;
 
-    public int getINV_NUMBER() {
-        return INV_NUMBER;
+    public String getDescription() {
+        return description;
     }
 
-    public String getInvDescription() {
-        return invDescription;
+    public void setDescription(String description) {
+        this.description = (description == null) ? "" : description;
     }
 
-    public void setInvDescription(String invDescription) {
-        this.invDescription = (invDescription != null) ? invDescription : "";
+    public String getCategory() {
+        return category;
     }
 
-    public Product(String invDescription, Category category, double price) {
-        numberOfProducts++;
-        this.INV_NUMBER = numberOfProducts;
-        setInvDescription(invDescription);
-        this.category = category;
+    public void setCategory(String category) {
+        this.category = (category == null) ? "" : category;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
         this.price = (price > 0) ? price : 0;
     }
 
-    public Product() {
-        this("", Category.A, 0.0);
-    }
-
-    public Product(Product other){
-        this(other.invDescription, other.category, other.price);
+    public Product(String description, String category, double price) {
+        setDescription(description);
+        setCategory(category);
+        setPrice(price);
     }
 
     @Override
     public String toString() {
-        return String.format("[unique number = %d, description = %s, price = %.2f]",
-                INV_NUMBER, invDescription, price);
-    }
-
-    public static void main(String[] args) {
-        Product[] products = {new Product("table", Category.A, 500.6912),
-                        new Product("chair", Category.B, 100.5),
-                        new Product("bed", Category.C, 1000.543),
-                        new Product("lamp", Category.D, 10.879)};
-
-        for (int i = 0; i < products.length; i++) {
-            System.out.println(products[i]);
-
-        }
+        return String.format("Description: %s, Category: %s, Price: %.2f",
+                description, category, price);
     }
 }
